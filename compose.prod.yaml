@@ -1,0 +1,11 @@
+---
+services:  
+  api:
+    build:
+      context: ./api
+      target: frankenphp_prod
+
+  pwa:
+    build:
+      context: ./pwa
+      target: prod
