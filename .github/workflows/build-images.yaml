@@ -62,7 +62,8 @@ jobs:
           echo "API_LATEST=${API_IMAGE}:latest" >> "$GITHUB_OUTPUT"
           echo "PWA_LATEST=${PWA_IMAGE}:latest" >> "$GITHUB_OUTPUT"
 
-      - name: Echo github output tags
+      - name: push timestamp image
+        if: github.ref_name == 'main'
         run: |
           docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_DATE }}
           docker push ${{ steps.tag.outputs.API_DATE }}
@@ -70,6 +71,9 @@ jobs:
           docker tag $PWA_DOCKER_IMAGE ${{ steps.tag.outputs.PWA_DATE }}
           docker push ${{ steps.tag.outputs.PWA_DATE }}
 
+      - name: push latest image
+        if: github.ref_name == 'main'
+        run: |
           docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_LATEST }}
           docker push ${{ steps.tag.outputs.API_LATEST }}
 
