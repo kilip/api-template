@@ -2,6 +2,8 @@ name: Build Images
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
 
 env:
   IMAGE_PREFIX: ghcr.io/kilip/reboot
