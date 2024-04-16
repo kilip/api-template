@@ -19,8 +19,10 @@ jobs:
       - name: Setup build tags
         id: tag
         run: |
-          nightly=$(date +'%Y%m%d%H%M%S')
-          echo "nightly=${nightly}" >> "$GITHUB_OUTPUT"
+          date_tag=$(date +'%Y%m%d%H%M%S')
+
+          # php main
+          echo "PHP_NIGHTLY=${IMAGE_PREFIX}-php:main-${date_tag}"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -40,6 +42,6 @@ jobs:
 
       - name: Echo github output tags
         run: |
-          echo ${IMAGE_PREFIX}-php:main-${{ steps.tag.outcome.nightly }}
+          echo "nightly ${{ steps.tag.outputs.PHP_NIGHTLY }}"
 
   
