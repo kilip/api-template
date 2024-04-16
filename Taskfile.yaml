@@ -49,3 +49,8 @@ tasks:
     desc: show pwa container log
     cmds:
       - docker compose logs -f pwa --tail 10
+
+  api:shell:
+    desc: execute bash shell in api container
+    cmds:
+      - docker compose exec api bash
