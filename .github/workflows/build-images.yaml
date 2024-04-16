@@ -14,7 +14,9 @@ jobs:
   build:
     name: Build Container Image
     runs-on: ubuntu-latest
-  
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -57,12 +59,33 @@ jobs:
           echo "API_DATE=${API_IMAGE}:main-${date_tag}" >> "$GITHUB_OUTPUT"
           echo "PWA_DATE=${PWA_IMAGE}:main-${date_tag}" >> "$GITHUB_OUTPUT"
 
+          echo "API_LATEST=${API_IMAGE}:latest" >> "$GITHUB_OUTPUT"
+          echo "PWA_LATEST=${PWA_IMAGE}:latest" >> "$GITHUB_OUTPUT"
+
       - name: Echo github output tags
         run: |
-          docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_DATE}}
+          docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_DATE }}
           docker push ${{ steps.tag.outputs.API_DATE }}
-
+          
           docker tag $PWA_DOCKER_IMAGE ${{ steps.tag.outputs.PWA_DATE }}
           docker push ${{ steps.tag.outputs.PWA_DATE }}
+
+          docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_LATEST }}
+          docker push ${{ steps.tag.outputs.API_LATEST }}
+
+          docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.PWA_LATEST}}
+          docker push ${{ steps.tag.outputs.PWA_LATEST }}
+          
+          
+          
+          
+
+          
+
+          
+          docker push ${{ steps.tag.outputs.PWA_DATE }}
+
+          
+          
 
   
