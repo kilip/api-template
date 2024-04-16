@@ -20,7 +20,9 @@ jobs:
         id: tag
         run: |
           echo "tag=hello" >> "$GITHUB_OUTPUT"
+          echo "foo=bar" >> "$GITHUB_OUTPUT"
       
       - name: Echo github output
         run: |
           echo "the secret number is ${{ steps.tag.outputs.tag }}"
+          echo "the secret number is ${{ steps.tag.outputs.foo }}"
