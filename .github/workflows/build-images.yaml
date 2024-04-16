@@ -21,4 +21,4 @@ jobs:
       
       - name: Echo github output
         run: |
-          echo "the secret number is ${{ steps.tag.outputs.hello }}"
+          echo "the secret number is ${{ steps.tag.outputs.tag }}"
