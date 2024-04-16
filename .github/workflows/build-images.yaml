@@ -22,7 +22,7 @@ jobs:
           date_tag=$(date +'%Y%m%d%H%M%S')
 
           # php main
-          echo "PHP_NIGHTLY=${IMAGE_PREFIX}-php:main-${date_tag}"
+          echo "PHP_NIGHTLY=${IMAGE_PREFIX}-php:main-${date_tag}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
