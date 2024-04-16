@@ -19,16 +19,20 @@ CMD ["sh", "-c", "pnpm install; pnpm dev --host"]
 
 # base prod deps
 FROM base as prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod
 
 # base prod build
 FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install
 RUN pnpm run build
 
 # production image
 FROM base AS prod
 COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
-EXPOSE 5173
+COPY --from=build /app/build /app/build
+
+EXPOSE 3000
+ENV PORT 3000
+ENV HOSTNAME localhost
+
 CMD ["pnpm","start"]

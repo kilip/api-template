@@ -8,7 +8,12 @@ tasks:
     desc: boot docker container
     cmds:
       - docker compose up -d
-  
+
+  boot:prod:
+    desc: boot docker container
+    cmds:
+      - docker compose -f compose.yaml -f compose.prod.yaml up -d
+
   stop:
     desc: stop docker container
     cmds:
@@ -33,7 +38,7 @@ tasks:
   build:prod:
     desc: Build production images
     cmds:
-      - docker compose -f compose.yaml -f compose.prod.yaml build --no-cache
+      - docker compose -f compose.yaml -f compose.prod.yaml build
 
   logs:api:
     desc: show api container log

@@ -4,7 +4,8 @@ services:
     build:
       context: ./api
       target: frankenphp_prod
-
+    environment:
+      PWA_UPSTREAM: pwa:3000
   pwa:
     build:
       context: ./pwa
