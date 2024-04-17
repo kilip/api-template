@@ -9,22 +9,22 @@ tasks:
     cmds:
       - docker compose -f compose.yaml -f compose.prod.yaml up -d
 
-  dc:up:
+  up:
     desc: boot docker container
     cmds:
       - docker compose up -d
 
-  dc:start:
+  start:
     desc: start docker container
     cmds:
       - docker compose up -d
 
-  dc:stop:
+  stop:
     desc: stop docker container
     cmds:
       - docker compose stop
   
-  dc:rm:
+  rm:
     desc: cleanup containers
     cmds:
       - docker compose rm
