@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
+    tags:
+      - 'v*'
 
 env:
   IMAGE_PREFIX: ghcr.io/kilip/reboot
@@ -57,10 +59,21 @@ jobs:
           echo "API_LATEST=${API_IMAGE}:latest" >> "$GITHUB_OUTPUT"
           echo "PWA_LATEST=${PWA_IMAGE}:latest" >> "$GITHUB_OUTPUT"
 
+          echo "API_REF=${API_IMAGE}:${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+          echo "PWA_REF=${PWA_IMAGE}:${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
+
       - name: docker push sha tag
         run: |
           docker push $API_DOCKER_IMAGE
           docker push $PWA_DOCKER_IMAGE
+
+      - name: push ref name tag
+        run: |
+          docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_REF }}
+          docker push ${{ steps.tag.outputs.API_REF }}
+
+          docker tag $PWA_DOCKER_IMAGE ${{ steps.tag.outputs.PWA_REF }}
+          docker push ${{ steps.tag.outputs.PWA_REF }}
 
       - name: push timestamp image
         if: github.ref_name == 'main'
