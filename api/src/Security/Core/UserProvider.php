@@ -5,10 +5,13 @@ namespace Reboot\Security\Core;
 use Reboot\Contracts\UserRepositoryInterface;
 use Reboot\Entity\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\AttributesBasedUserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface as SymfonyUser;
+use Reboot\Contracts\UserInterface;
 
+/**
+ * @implements AttributesBasedUserProviderInterface<UserInterface|User|SymfonyUser>
+ */
 class UserProvider implements AttributesBasedUserProviderInterface
 {
 
@@ -32,6 +35,9 @@ class UserProvider implements AttributesBasedUserProviderInterface
         return $class == $this->users->getClass();
     }
 
+    /**
+     * @param array<string,mixed> $attributes
+     */
     public function loadUserByIdentifier(string $identifier, array $attributes = []): SymfonyUser
     {
         $users = $this->users;

@@ -85,7 +85,7 @@ jobs:
           docker push ${{ steps.tag.outputs.PWA_DATE }}
 
       - name: push latest image
-        if: github.ref_name == 'main'
+        if: github.ref_name != 'main'
         run: |
           docker tag $API_DOCKER_IMAGE ${{ steps.tag.outputs.API_LATEST }}
           docker push ${{ steps.tag.outputs.API_LATEST }}

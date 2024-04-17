@@ -27,3 +27,7 @@
 /.php-cs-fixer.cache
 /.php-cs-fixer.result.cache
 ###< friendsofphp/php-cs-fixer ###
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

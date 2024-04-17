@@ -10,9 +10,9 @@ use PHPUnit\Framework\TestCase;
 
 class UserProviderTest extends TestCase
 {
-    private MockObject $users;
+    private MockObject|UserRepositoryInterface $users;
 
-    private MockObject $user;
+    private MockObject|UserInterface $user;
 
     private UserProvider $sut;
 
