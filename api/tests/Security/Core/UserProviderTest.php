@@ -70,6 +70,6 @@ class UserProviderTest extends TestCase
             ->method('setName')
             ->with($name = 'Some Name');
 
-        $sut->loadUserByIdentifier($email, ['name' => $name]);
+        $sut->loadUserByIdentifier($email, ['name' => $name, 'email' => $email]);
     }
 }
