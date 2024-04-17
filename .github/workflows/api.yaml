@@ -1,11 +1,8 @@
 name: API Tests
 
 on:
+  workflow_call:
   workflow_dispatch:
-  pull_request:
-    branches: [main]
-  push:
-    branches: [main]
 
 defaults:
   run:
@@ -113,7 +110,7 @@ jobs:
         run: bin/console cache:clear --ansi
 
       - name: Run PHPUnit tests
-        run: bin/phpunit --log-junit build/logs/phpunit/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/phpunit/clover.xml' || '' }}
+        run: bin/phpunit --coverage-text --log-junit build/logs/phpunit/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/phpunit/clover.xml' || '' }}
 
       - name: Upload test artifacts
         if: always()
