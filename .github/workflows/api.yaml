@@ -121,7 +121,6 @@ jobs:
         if: matrix.coverage
         uses: codecov/codecov-action@v3
         with:
-          directory: build/logs
           name: phpunit-php${{ matrix.php }}
           flags: phpunit
           fail_ci_if_error: false
