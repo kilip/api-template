@@ -10,7 +10,7 @@ on:
 
 jobs:  
   release:
-    name: Release
+    name: Version ${{ github.ref_name }}
     runs-on: ubuntu-latest
     permissions:
       contents: write

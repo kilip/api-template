@@ -103,28 +103,25 @@ jobs:
       - name: Update project dependencies
         run: composer update --no-interaction --no-progress --ansi
 
-      - name: Install PHPUnit
-        run: bin/phpunit --version
-
       - name: Clear test app cache
         run: bin/console cache:clear --ansi
 
       - name: Run PHPUnit tests
-        run: bin/phpunit --coverage-text --log-junit build/logs/phpunit/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/phpunit/clover.xml' || '' }}
+        run: bin/phpunit --coverage-text --log-junit build/logs/phpunit/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/clover.xml' || '' }}
 
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: phpunit-logs-php${{ matrix.php }}
-          path: build/logs/phpunit
+          path: build/logs
         continue-on-error: true
 
       - name: Upload coverage results to Codecov
         if: matrix.coverage
         uses: codecov/codecov-action@v3
         with:
-          directory: build/logs/phpunit
+          directory: build/logs
           name: phpunit-php${{ matrix.php }}
           flags: phpunit
           fail_ci_if_error: false
