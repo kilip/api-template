@@ -18,15 +18,20 @@ api_platform:
       rfc_7807_compliant_errors: true
   event_listeners_backward_compatibility_layer: false
   keep_legacy_inflector: false
-  oauth:
-    enabled: true
-    clientId: ""
-    pkce: true
-    type: oauth2
-    flow: authorizationCode
-    tokenUrl: '%env(OIDC_TOKEN)%'
-    authorizationUrl: '%env(OIDC_AUTHORIZE)%'
-    scopes:
-      openid: (required) Indicates that the application intends to use OIDC to verify the user's identity
-      profile: (required) Get user profile
-      email: (required) Get user email info
+
+when@dev:
+  api_platform:
+    oauth:
+      enabled: true
+      pkce: true
+      type: oauth2
+      flow: authorizationCode
+      tokenUrl: '%env(resolve:OIDC_SWAGGER_TOKEN_URL)%'
+      authorizationUrl: '%env(resolve:OIDC_SWAGGER_AUTHORIZE_URL)%'
+      clientId: '%env(resolve:OIDC_SWAGGER_CLIENT_ID)%'
+      clientSecret: '%env(resolve:OIDC_SWAGGER_CLIENT_SECRET)%'
+      scopes:
+        openid: (required) Indicates that the application intends to use OIDC to verify the user's identity
+        profile: (required) Get user profile
+        email: (required) Get user email info
+    

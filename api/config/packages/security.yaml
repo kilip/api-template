@@ -8,7 +8,7 @@ security:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
     main:
-      lazy: true
+      #lazy: true
       provider: users 
   
   access_control:
@@ -19,10 +19,9 @@ when@prod: &prod
   security:
     firewalls:
       main:
-        stateless: true
         access_token:
           token_handler:
-            oidc_user_info: '%env(OIDC_USER_INFO)%'
+            oidc_user_info: '%env(resolve:OIDC_USER_INFO_URL)%'
 
 when@dev: *prod
 
@@ -30,4 +29,4 @@ when@test:
   security:
     firewalls:
       main:
-        
+

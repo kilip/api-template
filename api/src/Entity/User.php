@@ -12,6 +12,7 @@ use Symfony\Component\Uid\Uuid;
 
 #[ApiResource(mercure: true)]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Table(name: 'users')]
 class User implements UserInterface
 {
     #[ORM\Id]
@@ -20,7 +21,7 @@ class User implements UserInterface
     #[ORM\Column(type: UuidType::NAME, unique: true)]
     private ?Uuid $id = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', unique: true)]
     private string $email;
 
     #[ORM\Column(type: 'string')]

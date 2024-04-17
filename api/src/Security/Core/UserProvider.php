@@ -3,6 +3,7 @@
 namespace Reboot\Security\Core;
 
 use Reboot\Contracts\UserRepositoryInterface;
+use Reboot\Entity\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\AttributesBasedUserProviderInterface;
@@ -34,7 +35,11 @@ class UserProvider implements AttributesBasedUserProviderInterface
     public function loadUserByIdentifier(string $identifier, array $attributes = []): SymfonyUser
     {
         $users = $this->users;
-        $user = $users->findByEmail($identifier) ?: $users->create();
+        $user = $users->findByEmail($identifier);
+
+        if(!$user instanceof User){
+            $user = $users->create();
+        }
 
         if(!isset($attributes['name'])){
             throw new UnsupportedUserException('Property "name" is missing in token attributes.');

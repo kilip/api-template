@@ -4,20 +4,30 @@ version: "3"
 tasks:
   default: task -l  
 
-  boot:
-    desc: boot docker container
-    cmds:
-      - docker compose up -d
-
   boot:prod:
     desc: boot docker container
     cmds:
       - docker compose -f compose.yaml -f compose.prod.yaml up -d
 
-  stop:
+  dc:up:
+    desc: boot docker container
+    cmds:
+      - docker compose up -d
+
+  dc:start:
+    desc: start docker container
+    cmds:
+      - docker compose up -d
+
+  dc:stop:
     desc: stop docker container
     cmds:
       - docker compose stop
+  
+  dc:rm:
+    desc: cleanup containers
+    cmds:
+      - docker compose rm
 
   build:
     desc: build dev container
@@ -59,6 +69,11 @@ tasks:
     desc: execute bin/console command in api container
     cmds:
       - docker compose exec api bin/console {{.CLI_ARGS}}
+  
+  sf:cc:
+    desc: clear symfony cache
+    cmds:
+      - docker compose exec api bin/console cache:clear {{.CLI_ARGS}}
 
   composer:
     desc: execute composer in api container
