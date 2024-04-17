@@ -107,7 +107,7 @@ jobs:
         run: bin/console cache:clear --ansi
 
       - name: Run PHPUnit tests
-        run: bin/phpunit --coverage-text --log-junit build/logs/phpunit/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/clover.xml' || '' }}
+        run: bin/phpunit --coverage-text --log-junit build/logs/junit.xml ${{ matrix.coverage && '--coverage-clover build/logs/clover.xml' || '' }}
 
       - name: Upload test artifacts
         if: always()
