@@ -1,3 +1,3 @@
 # reboot
 ====
-The command center application for my homelab.
+The command center application for my Homelab.

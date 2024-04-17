@@ -1,18 +1,32 @@
 api_platform:
-    title: Hello API Platform
-    version: 1.0.0
-    formats:
-        jsonld: ['application/ld+json']
-    docs_formats:
-        jsonld: ['application/ld+json']
-        jsonopenapi: ['application/vnd.openapi+json']
-        html: ['text/html']
-    defaults:
-        stateless: true
-        cache_headers:
-            vary: ['Content-Type', 'Authorization', 'Origin']
-        extra_properties:
-            standard_put: true
-            rfc_7807_compliant_errors: true
-    event_listeners_backward_compatibility_layer: false
-    keep_legacy_inflector: false
+  title: Reboot API Specification
+  version: 1.0.0
+  mercure:
+    include_type: true
+  formats:
+    jsonld: ['application/ld+json']
+  docs_formats:
+    jsonld: ['application/ld+json']
+    jsonopenapi: ['application/vnd.openapi+json']
+    html: ['text/html']
+  defaults:
+    stateless: true
+    cache_headers:
+      vary: ['Content-Type', 'Authorization', 'Origin']
+    extra_properties:
+      standard_put: true
+      rfc_7807_compliant_errors: true
+  event_listeners_backward_compatibility_layer: false
+  keep_legacy_inflector: false
+  oauth:
+    enabled: true
+    clientId: ""
+    pkce: true
+    type: oauth2
+    flow: authorizationCode
+    tokenUrl: '%env(OIDC_TOKEN)%'
+    authorizationUrl: '%env(OIDC_AUTHORIZE)%'
+    scopes:
+      openid: (required) Indicates that the application intends to use OIDC to verify the user's identity
+      profile: (required) Get user profile
+      email: (required) Get user email info

@@ -54,3 +54,14 @@ tasks:
     desc: execute bash shell in api container
     cmds:
       - docker compose exec api bash
+  
+  sf:
+    desc: execute bin/console command in api container
+    cmds:
+      - docker compose exec api bin/console {{.CLI_ARGS}}
+
+  composer:
+    desc: execute composer in api container
+    cmds:
+      - docker compose exec api composer {{.CLI_ARGS}}
+
