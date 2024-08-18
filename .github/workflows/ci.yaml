@@ -15,3 +15,8 @@ jobs:
       phpstan: true
       phpcsfixer: true
     secrets: inherit
+
+  phpunit:
+    name: PHPUnit
+    uses: kilip/gh-php-common/.github/workflows/phpunit.yaml@main
+    secrets: inherit
