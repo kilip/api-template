@@ -8,7 +8,7 @@ on:
 jobs:
   static:
     name: Static Check
-    uses: kilip/gh-common/.github/workflows/php-lint.yaml@main
+    uses: kilip/gh-php-common/.github/workflows/static-check.yaml@main
     with:
       php_version: 8.3
     secrets: inherit
