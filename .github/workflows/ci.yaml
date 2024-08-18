@@ -11,4 +11,7 @@ jobs:
     uses: kilip/gh-php-common/.github/workflows/static-check.yaml@main
     with:
       php_version: 8.3
+      commitlint: true
+      phpstan: true
+      phpcsfixer: true
     secrets: inherit
