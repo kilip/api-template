@@ -6,7 +6,8 @@ on:
     branches: ["main"]
 
 jobs:
-  lint:
+  static:
+    name: Static Check
     uses: kilip/gh-common/.github/workflows/php-lint.yaml@main
     with:
       php_version: 8.3
