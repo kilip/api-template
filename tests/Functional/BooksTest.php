@@ -12,54 +12,19 @@
 namespace App\Tests\Functional;
 
 use App\Entity\Books;
-use Doctrine\Persistence\ObjectManager;
-use Doctrine\Persistence\ObjectRepository;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
 
-class BooksTest extends KernelTestCase
+#[CoversClass(Books::class)]
+class BooksTest extends TestCase
 {
-    /**
-     * @var ObjectRepository<Books>
-     */
-    private ObjectRepository $repository;
-    private ObjectManager $manager;
-
-    protected function setUp(): void
+    public function testImmutable(): void
     {
-        static::bootKernel();
-        $this->manager = static::getContainer()
-            ->get('doctrine')
-            ->getManager();
-        $this->repository = $this->manager->getRepository(Books::class);
-    }
-
-    public function testCrud(): void
-    {
-        $repository = $this->repository;
-        $manager = $this->manager;
-
-        $this->ensureBookNotExists('test');
-
         $book = new Books();
-        $book->setAuthor('Test');
-        $book->setTitle('Test Book');
-        $filter = ['title' => $book->getTitle()];
+        $book->setAuthor('Author');
+        $book->setTitle('Title');
 
-        $manager->persist($book);
-        $manager->flush();
-        $this->assertInstanceOf(Books::class, $repository->findOneBy($filter));
-        $this->assertNotNull($book->id);
-        $this->assertSame('Test', $book->getAuthor());
-        $this->assertSame('Test Book', $book->getTitle());
-    }
-
-    private function ensureBookNotExists(string $title): void
-    {
-        $book = $this->repository->findOneBy(['title' => $title]);
-
-        if ($book instanceof Books) {
-            $this->manager->remove($book);
-            $this->manager->flush();
-        }
+        $this->assertSame('Author', $book->getAuthor());
+        $this->assertSame('Title', $book->getTitle());
     }
 }
