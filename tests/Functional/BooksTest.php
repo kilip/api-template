@@ -9,6 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class BooksTest extends KernelTestCase
 {
+    /**
+     * @var ObjectRepository<Books>
+     */
     private ObjectRepository $repository;
     private ObjectManager $manager;
 
