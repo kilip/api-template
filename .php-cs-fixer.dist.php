@@ -1,7 +1,7 @@
 <?php
 
 $header = <<<'HEADER'
-This file is part of the Crank project.
+This file is part of the api-template project.
 
 (c) Anthonius Munthi <me@itstoni.com>
 
@@ -11,8 +11,7 @@ HEADER;
 
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
-    ->exclude('var')
-;
+    ->exclude('var');
 
 return (new PhpCsFixer\Config())
     ->setRules([

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the api-template project.
+ *
+ * (c) Anthonius Munthi <me@itstoni.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Tests\Functional;
 
 use App\Entity\Books;
@@ -32,8 +41,8 @@ class BooksTest extends KernelTestCase
         $this->ensureBookNotExists('test');
 
         $book = new Books();
-        $book->author = "Test";
-        $book->title = "Test Book";
+        $book->author = 'Test';
+        $book->title = 'Test Book';
         $filter = ['title' => $book->title];
 
         $manager->persist($book);
