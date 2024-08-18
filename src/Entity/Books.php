@@ -24,8 +24,28 @@ class Books
     public int $id;
 
     #[ORM\Column(type: 'string')]
-    public string $title;
+    private string $title;
 
     #[ORM\Column(type: 'string')]
-    public string $author;
+    private string $author;
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
 }

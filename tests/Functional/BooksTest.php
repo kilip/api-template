@@ -41,14 +41,16 @@ class BooksTest extends KernelTestCase
         $this->ensureBookNotExists('test');
 
         $book = new Books();
-        $book->author = 'Test';
-        $book->title = 'Test Book';
-        $filter = ['title' => $book->title];
+        $book->setAuthor('Test');
+        $book->setTitle('Test Book');
+        $filter = ['title' => $book->getTitle()];
 
         $manager->persist($book);
         $manager->flush();
         $this->assertInstanceOf(Books::class, $repository->findOneBy($filter));
         $this->assertNotNull($book->id);
+        $this->assertSame('Test', $book->getAuthor());
+        $this->assertSame('Test Book', $book->getTitle());
     }
 
     private function ensureBookNotExists(string $title): void
