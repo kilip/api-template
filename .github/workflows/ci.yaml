@@ -16,8 +16,8 @@ jobs:
       phpcsfixer: true
     secrets: inherit
 
-  phpunit:
-    name: PHPUnit
+  testing:
+    name: Testing
     uses: kilip/gh-php-common/.github/workflows/phpunit.yaml@main
     with:
       pre_run: |
