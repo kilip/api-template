@@ -1,0 +1,28 @@
+---
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  static:
+    name: Static Check
+    uses: kilip/gh-php-common/.github/workflows/static-check.yaml@main
+    with:
+      php_version: 8.3
+      commitlint: true
+      phpstan: true
+      phpcsfixer: true
+    secrets: inherit
+
+  testing:
+    name: Testing
+    uses: kilip/gh-php-common/.github/workflows/testing.yaml@main
+    with:
+      pre_run: |
+        ./bin/console doctrine:schema:create
+      codecov: true
+    secrets: inherit
