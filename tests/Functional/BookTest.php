@@ -11,16 +11,16 @@
 
 namespace App\Tests\Functional;
 
-use App\Entity\Books;
+use App\Entity\Book;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(Books::class)]
-class BooksTest extends TestCase
+#[CoversClass(Book::class)]
+class BookTest extends TestCase
 {
     public function testImmutable(): void
     {
-        $book = new Books();
+        $book = new Book();
         $book->setAuthor('Author');
         $book->setTitle('Title');
 

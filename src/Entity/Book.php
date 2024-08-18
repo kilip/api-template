@@ -16,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ApiResource()]
 #[ORM\Entity()]
-class Books
+class Book
 {
     #[ORM\Id]
     #[ORM\GeneratedValue()]
