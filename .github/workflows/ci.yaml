@@ -19,4 +19,7 @@ jobs:
   phpunit:
     name: PHPUnit
     uses: kilip/gh-php-common/.github/workflows/phpunit.yaml@main
+    with:
+      pre_run: |
+        ./bin/console doctrine:schema:create
     secrets: inherit
