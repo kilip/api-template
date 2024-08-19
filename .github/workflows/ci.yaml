@@ -22,9 +22,10 @@ jobs:
     name: Testing
     uses: kilip/gh-php-common/.github/workflows/testing.yaml@main
     with:
-      pre_run: |
-        ./bin/console doctrine:schema:create
+      #pre_run: |
+      #  ./bin/console doctrine:schema:create
       codecov: true
+      postgres: true
     secrets: inherit
 
   build:
