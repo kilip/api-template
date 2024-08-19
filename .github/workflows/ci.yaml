@@ -2,6 +2,7 @@
 name: CI
 
 on:
+  workflow_dispatch:
   push:
     branches: ["main"]
   pull_request:
@@ -19,16 +20,22 @@ jobs:
     secrets: inherit
 
   testing:
+    needs: ["static"]
     name: Testing
     uses: kilip/gh-php-common/.github/workflows/testing.yaml@main
     with:
-      #pre_run: |
-      #  ./bin/console doctrine:schema:create
+      pre_run: |
+        ./bin/console --version
       codecov: true
       postgres: true
     secrets: inherit
 
   build:
-    name: Build Image
+    needs: ["testing"]
+    name: Build
     uses: kilip/gh-php-common/.github/workflows/build-image.yaml@main
     secrets: inherit
+    with:
+      goss: true
+      description: API Template Container
+      goss_file: ./frankenphp/goss.yaml
