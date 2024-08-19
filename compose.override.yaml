@@ -3,6 +3,8 @@ services:
   php:
     build:
       target: frankenphp_dev
+    volumes:
+      - ./:/app
 
 ###> doctrine/doctrine-bundle ###
   database:

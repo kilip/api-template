@@ -30,6 +30,7 @@ RUN set -eux; \
     ;
 
 COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
+COPY --link composer.* symfony.* ./
 
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
 

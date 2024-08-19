@@ -26,3 +26,8 @@ jobs:
         ./bin/console doctrine:schema:create
       codecov: true
     secrets: inherit
+
+  build:
+    name: Build Image
+    uses: kilip/gh-php-common/.github/workflows/build-image.yaml@main
+    secrets: inherit
