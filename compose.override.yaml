@@ -1,5 +1,9 @@
-
+---
 services:
+  php:
+    build:
+      target: frankenphp_dev
+
 ###> doctrine/doctrine-bundle ###
   database:
     ports:
