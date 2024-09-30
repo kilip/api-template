@@ -3,7 +3,7 @@
 # Adapted from https://github.com/dunglas/symfony-docker
 
 # Versions
-FROM ghcr.io/kilip/frankenphp-api:1.2.4-php8.3@sha256:0115afd3eb25b1b9055246a9168fc9e5c72bb18b38772e39c863680bd710b501 AS frankenphp_base
+FROM ghcr.io/kilip/frankenphp-api:1.2.5-php8.3@sha256:b55cce270fcdeb97586df55f7844284da5e01ad69f4c21b6e775f5531fdb91b3 AS frankenphp_base
 
 
 # The different stages of this Dockerfile are meant to be built into separate images
